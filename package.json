@@ -21,7 +21,6 @@
     "tailwindcss": "^1.2.0"
   },
   "dependencies": {
-    "bracket-generator": "^3.1.1",
     "sirv-cli": "^0.4.4",
     "svelte-material-icons": "^1.0.3"
   }
