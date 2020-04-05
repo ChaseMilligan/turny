@@ -53,7 +53,7 @@
       <h1 class="uppercase text-white">{winner}</h1>
     </div>
   {/if}
-  <h1 class="font-700 font-roboto text-red-400">Tourny</h1>
+  <h1 class="font-700 font-roboto text-red-400">Turny</h1>
   <div class="flex flex-col md:flex-row mx-2 md:mx-6 lg:mx-12">
     <div class="px-1 w-full lg:w-1/3">
       <PlayerList bind:players />

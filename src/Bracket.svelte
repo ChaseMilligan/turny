@@ -1,7 +1,7 @@
 <script>
   import Game from "./Game.svelte";
   import Final from "./Final.svelte";
-  import { onMount } from "svelte";
+  import { onMount, afterUpdate } from "svelte";
 
   export let bracket;
   export let remainingPlayers;
@@ -14,7 +14,7 @@
   function populateBracket() {
     let playerIndex = 0;
     for (let i = 0; i < Math.ceil(remainingPlayers.length / 2); i++) {
-      if (i === 0 && bracket[currentRound - 1].byes !== 0) {
+      if (i === 0 && !!bracket[currentRound - 1].byes) {
         allGames.push({
           game: 1,
           players: [
@@ -89,7 +89,12 @@
   }
 
   onMount(() => {
+    console.log(bracket);
     populateBracket();
+  });
+
+  afterUpdate(() => {
+    console.log(allGames);
   });
 </script>
 

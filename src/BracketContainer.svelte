@@ -16,16 +16,16 @@
 
   function generateBracket() {
     let playerIndex = 0;
-    let length = players.length / 2;
+    let length = remainingPlayers.length / 2;
     let roundIndex = 1;
     while (Math.ceil(length) > 1) {
       bracket.push({
         round: roundIndex,
         gameCount:
-          Math.ceil(length) % 2 === 0
+          remainingPlayers.length / Math.ceil(length) === 2
             ? Math.ceil(length)
             : Math.ceil(length) - 1,
-        byes: Math.ceil(length) % 2
+        byes: remainingPlayers.length / Math.ceil(length) === 2 ? false : true
       });
       length = Math.ceil(length) / 2;
       roundIndex++;
@@ -43,20 +43,20 @@
 </style>
 
 <div class="bg-white p-4 border-solid border-gray-700 border-2">
-  <h3 class="font-roboto-700 uppercase text-xl">Tourny</h3>
+  <h3 class="font-roboto-700 uppercase text-xl">Turny</h3>
   <button
     disabled={players.length < 3 ? true : false}
     on:click={generateBracket}>
-    Generate Tourny
+    Generate Turny
   </button>
   <button disabled={bracket.length === 0} on:click={clearBracket}>
-    Clear Tourny
+    Clear Turny
   </button>
   {#if bracket.length !== 0}
     <Bracket bind:bracket bind:remainingPlayers {setWinner} />
   {:else}
     <p class="my-2 py-2 text-red-400 font-bold">
-      You haven't generated a tourny yet.
+      You haven't generated a turny yet.
     </p>
   {/if}
 </div>
