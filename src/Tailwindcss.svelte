@@ -3,6 +3,10 @@
     font-family: "Nunito Sans", sans-serif;
   }
 
+  input {
+    background-color: #eee !important;
+  }
+
   @tailwind base;
   @tailwind components;
   @tailwind utilities;

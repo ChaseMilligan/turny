@@ -1,5 +1,4 @@
 <script>
-  import BracketGenerator from "../node_modules/bracket-generator";
   import Bracket from "./Bracket.svelte";
   import { afterUpdate } from "svelte";
 
@@ -8,6 +7,7 @@
 
   let bracket = [];
   let remainingPlayers = players;
+  let disabled = players.length < 3 ? true : false;
 
   function clearBracket() {
     bracket = [];
@@ -32,6 +32,10 @@
     }
     bracket = bracket;
   }
+
+  afterUpdate(() => {
+    disabled = players.length < 3 ? true : false;
+  });
 </script>
 
 <style>
@@ -45,7 +49,8 @@
 <div class="bg-white p-4 border-solid border-gray-700 border-2">
   <h3 class="font-roboto-700 uppercase text-xl">Turny</h3>
   <button
-    disabled={players.length < 3 ? true : false}
+    class={disabled ? 'bg-gray-300 text-gray-700 border-solid border-gray-300 border cursor-not-allowed hover:border-gray-500' : 'bg-blue-500 text-white hover:bg-green-400'}
+    {disabled}
     on:click={generateBracket}>
     Generate Turny
   </button>

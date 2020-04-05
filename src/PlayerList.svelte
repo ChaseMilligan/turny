@@ -52,7 +52,7 @@
   <form on:submit={addPlayer} class="flex justify-center pb-2 w-full">
     <div class="flex flex-row">
       <input
-        class="py-1 px-2"
+        class="py-1 px-2 border-gray-400"
         name="player-input"
         type="text"
         maxlength="14"
@@ -60,8 +60,8 @@
         value={currentValue}
         placeholder="Enter player name" />
       <button
-        class="add-btn text-gray-700 bg-white hover:bg-blue-500 hover:text-white
-        cursor-pointer border-blue-500 font-roboto-300"
+        class="add-btn bg-blue-500 hover:bg-green-400 text-white cursor-pointer
+        border-blue-500 hover:border-green-400 font-roboto-300"
         type="submit">
         Add
       </button>
