@@ -21,6 +21,7 @@
     "tailwindcss": "^1.2.0"
   },
   "dependencies": {
+    "firebase": "^7.13.2",
     "sirv-cli": "^0.4.4",
     "svelte-material-icons": "^1.0.3"
   }
