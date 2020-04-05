@@ -14,6 +14,7 @@
 
   function populateBracket() {
     let playerIndex = 0;
+    remainingPlayers = shuffle(remainingPlayers);
     for (let i = 0; i < Math.ceil(remainingPlayers.length / 2); i++) {
       if (i === 0 && !!bracket[currentRound - 1].byes) {
         allGames.push({
@@ -61,6 +62,27 @@
     allGames = allGames;
   }
 
+  function shuffle(array) {
+    // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+    var currentIndex = array.length,
+      temporaryValue,
+      randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
+
   function setGameWinner(gameId, playerName) {
     allGames[gameId - 1].gameWinner = playerName;
     allGames = allGames;
@@ -73,7 +95,7 @@
       remainingPlayers.push(allGames[i].gameWinner);
     }
     allGames = [];
-    remainingPlayers = remainingPlayers;
+    remainingPlayers = shuffle(remainingPlayers);
     if (currentRound > bracket.length) {
       setupFinal();
       return;
@@ -90,7 +112,7 @@
   }
 
   onMount(() => {
-    console.log(bracket);
+    remainingPlayers = shuffle(remainingPlayers);
     populateBracket();
   });
 
