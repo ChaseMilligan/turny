@@ -67,7 +67,7 @@
   {#if bracket.length !== 0}
     <Bracket bind:bracket bind:remainingPlayers {setWinner} />
   {:else}
-    <p class="my-2 py-2 text-red-400 font-bold">
+    <p class="my-2 py-2 text-red-500 font-bold">
       You haven't generated a turny yet.
     </p>
   {/if}

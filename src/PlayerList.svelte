@@ -43,7 +43,7 @@
 </style>
 
 <div class="bg-white p-4 depth-shadow">
-  <h3 class="font-roboto-700 uppercase text-xl">Player List</h3>
+  <h3 class="font-roboto-700 text-xl">Player List</h3>
   <form on:submit={addPlayer} class="flex justify-center pb-2 w-full">
     <div class="flex flex-row depth-shadow">
       <input
@@ -69,13 +69,13 @@
         class="flex flex-row justify-between bg-white my-2 py-1 px-4
         depth-shadow">
         <div>
-          <span class="mr-2">{i + 1}</span>
-          <b class="text-bold uppercase" {disabled}>{player}</b>
+          <span class="mr-2 text-green-500">{i + 1}</span>
+          <b class="text-bold uppercase">{player}</b>
         </div>
         <span
           class="flex items-center cursor-pointer"
           on:click={() => removePlayer(i)}>
-          <CloseCircle color="#fc8181" {width} {height} />
+          <CloseCircle color="#f56565" {width} {height} />
         </span>
       </div>
     {/each}

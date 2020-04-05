@@ -3,6 +3,10 @@
     font-family: "Nunito Sans", sans-serif;
   }
 
+  .font-comfortaa {
+    font-family: "Comfortaa", cursive;
+  }
+
   input {
     border-radius: 0px;
   }
