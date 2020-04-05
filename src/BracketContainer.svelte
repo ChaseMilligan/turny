@@ -52,7 +52,6 @@
 </style>
 
 <div class="bg-white p-4 depth-shadow">
-  <h3 class="font-roboto-700 uppercase text-xl">Turny</h3>
   <button
     class={disabled ? 'bg-gray-300 text-gray-500 border-solid border-gray-300 border cursor-not-allowed hover:border-gray-500' : 'depth-shadow bg-blue-500 text-white hover:bg-green-400'}
     {disabled}
