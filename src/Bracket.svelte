@@ -10,6 +10,7 @@
   let allGames = [];
   let final = null;
   let currentRound = 1;
+  let disabled = !!allGames.find(game => game.gameWinner === null);
 
   function populateBracket() {
     let playerIndex = 0;
@@ -94,7 +95,7 @@
   });
 
   afterUpdate(() => {
-    console.log(allGames);
+    disabled = !!allGames.find(game => game.gameWinner === null);
   });
 </script>
 
@@ -102,7 +103,6 @@
   button {
     padding: 0.25rem 0.5rem;
     transition-duration: 0.15s;
-    border-radius: 5px;
   }
 </style>
 
@@ -120,8 +120,9 @@
     <Final {final} {setWinner} />
   {/if}
   <button
+    class={disabled ? 'bg-gray-300 text-gray-700 border-solid border-gray-300 border cursor-not-allowed hover:border-gray-500' : 'depth-shadow bg-blue-500 text-white hover:bg-green-400'}
     on:click={nextRound}
-    disabled={!!allGames.find(game => game.gameWinner === null)}>
+    {disabled}>
     Next Round
   </button>
 </div>

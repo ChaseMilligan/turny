@@ -4,7 +4,16 @@
   }
 
   input {
-    background-color: #eee !important;
+    border-radius: 0px;
+  }
+
+  button {
+    border-radius: 0px;
+    border: none;
+  }
+
+  .depth-shadow {
+    box-shadow: 3px 3px 4px 0px rgba(179, 179, 179, 0.25);
   }
 
   @tailwind base;

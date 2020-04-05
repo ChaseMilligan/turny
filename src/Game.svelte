@@ -16,7 +16,7 @@
 </style>
 
 <div class="px-2 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 text-white">
-  <div class="my-2 bg-gray-700">
+  <div class="my-2 bg-gray-700 depth-shadow">
     <h3 class="font-roboto-700 uppercase text-xl ">Game {game.game}</h3>
     <div class="flex flex-row">
       <div

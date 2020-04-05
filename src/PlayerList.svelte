@@ -38,21 +38,16 @@
   }
 
   input {
-    border-right: none;
-    border-radius: 5px 0px 0px 5px;
-  }
-
-  .add-btn {
-    border-radius: 0px 5px 5px 0px;
+    border: none;
   }
 </style>
 
-<div class="bg-white p-4 border-solid border-gray-700 border-2">
+<div class="bg-white p-4 depth-shadow">
   <h3 class="font-roboto-700 uppercase text-xl">Player List</h3>
   <form on:submit={addPlayer} class="flex justify-center pb-2 w-full">
-    <div class="flex flex-row">
+    <div class="flex flex-row depth-shadow">
       <input
-        class="py-1 px-2 border-gray-400"
+        class="py-1 px-2 bg-gray-200"
         name="player-input"
         type="text"
         maxlength="14"
@@ -60,7 +55,7 @@
         value={currentValue}
         placeholder="Enter player name" />
       <button
-        class="add-btn bg-blue-500 hover:bg-green-400 text-white cursor-pointer
+        class="bg-blue-500 hover:bg-green-400 text-white cursor-pointer
         border-blue-500 hover:border-green-400 font-roboto-300"
         type="submit">
         Add
@@ -71,8 +66,8 @@
     {#each players as player, i}
       <div
         id={i}
-        class="flex flex-row justify-between py-1 px-4 border-solid
-        border-gray-500 border-b">
+        class="flex flex-row justify-between bg-white my-2 py-1 px-4
+        depth-shadow">
         <div>
           <span class="mr-2">{i + 1}</span>
           <b class="text-bold uppercase" {disabled}>{player}</b>
