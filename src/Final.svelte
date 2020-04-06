@@ -16,14 +16,14 @@
   <div
     on:click={() => setWinner(final.players[0])}
     class="depth-shadow flex items-center justify-center player bg-blue-500
-    text-white mx-2 hover:bg-green-400 w-1/3 cursor-pointer">
+    text-white mx-2 hover:bg-green-400 w-full md:w-1/3 cursor-pointer">
     <h3 class="font-roboto-700 uppercase text-xl">{final.players[0]}</h3>
   </div>
   <i class="text-xl font-bold">vs.</i>
   <div
     on:click={() => setWinner(final.players[1])}
     class="depth-shadow flex items-center justify-center player bg-red-500
-    text-white mx-2 hover:bg-green-400 w-1/3 cursor-pointer">
+    text-white mx-2 hover:bg-green-400 w-full md:w-1/3 cursor-pointer">
     <h3 class="font-roboto-700 uppercase text-xl">{final.players[1]}</h3>
   </div>
 </div>

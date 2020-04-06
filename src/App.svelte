@@ -14,8 +14,6 @@
 <style>
   main {
     text-align: center;
-    padding: 1em;
-    max-width: 240px;
     margin: 0 auto;
   }
 
@@ -37,12 +35,6 @@
     font-size: 8rem;
     border-bottom: solid 1px #fff;
   }
-
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
-  }
 </style>
 
 <main class="font-comfortaa">
@@ -56,11 +48,11 @@
     </div>
   {/if}
   <h1 class="font-700 font-comfortaa text-red-500">Turny</h1>
-  <div class="flex flex-col md:flex-row mx-2 md:mx-6 lg:mx-12">
-    <div class="px-1 w-full lg:w-1/3">
+  <div class="flex flex-col-reverse xl:flex-row mx-2 md:mx-6 lg:mx-12">
+    <div class="mb-4 px-1 w-full xl:w-1/3">
       <PlayerList bind:players />
     </div>
-    <div class="px-1 w-full lg:w-2/3">
+    <div class="px-1 w-full xl:w-2/3">
       <BracketContainer bind:players {setWinner} />
     </div>
   </div>
