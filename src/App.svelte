@@ -46,7 +46,7 @@
     </div>
   {/if}
   <h1 class="font-700 font-comfortaa text-red-500 text-6xl">Turny</h1>
-  <div class="flex flex-col-reverse xl:flex-row mx-2 md:mx-6 lg:mx-12">
+  <div class="flex flex-col xl:flex-row mx-2 md:mx-6 lg:mx-12">
     <div class="mb-4 px-1 w-full xl:w-1/3">
       <PlayerList bind:players />
     </div>

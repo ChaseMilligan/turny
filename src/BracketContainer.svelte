@@ -1,5 +1,6 @@
 <script>
   import Bracket from "./Bracket.svelte";
+  import TypeButton from "./TypeButton.svelte";
   import { afterUpdate } from "svelte";
 
   export let players;
@@ -47,23 +48,34 @@
   button {
     padding: 0.25rem 0.5rem;
     transition-duration: 0.15s;
-    margin-right: 1rem;
   }
 </style>
 
-<div class="bg-white p-4 depth-shadow">
-  <button
-    class={disabled ? 'bg-gray-300 text-gray-500 border-solid border-gray-300 border cursor-not-allowed hover:border-gray-500' : 'depth-shadow bg-blue-500 text-white hover:bg-green-400'}
-    {disabled}
-    on:click={generateBracket}>
-    Generate Turny
-  </button>
-  <button
-    class={bracket.length === 0 ? 'bg-gray-300 text-gray-500 border-solid border-gray-300 border cursor-not-allowed hover:border-gray-500' : 'depth-shadow bg-blue-500 text-white hover:bg-green-400'}
-    disabled={bracket.length === 0}
-    on:click={clearBracket}>
-    Clear Turny
-  </button>
+<div class="flex flex-col items-center bg-white p-4 depth-shadow">
+  <div class="flex flex-col md:flex-row">
+    <h3 class="font-roboto-700 text-xl">Turny Type</h3>
+    <div
+      class="flex flex-row flex-wrap p-2 bg-gray-200 depth-shadow mb-2 w-full">
+      <div class="flex items-center justify-center w-full md:w-1/2 p-1">
+        <TypeButton optionName={'Single Elimination'} />
+      </div>
+      <div class="flex items-center justify-center w-full md:w-1/2 p-1">
+        <TypeButton optionName={'Best of 3'} />
+      </div>
+      <div class="flex items-center justify-center w-full md:w-1/2 p-1">
+        <TypeButton optionName={'Best of 5'} />
+      </div>
+      <div class="flex items-center justify-center w-full md:w-1/2 p-1">
+        <TypeButton optionName={'Best of 7'} />
+      </div>
+    </div>
+    <button
+      class={disabled ? 'w-full bg-gray-300 text-gray-500 border-solid border-gray-300 border cursor-not-allowed hover:border-gray-500' : 'w-full depth-shadow bg-blue-500 text-white hover:bg-green-400'}
+      {disabled}
+      on:click={generateBracket}>
+      Generate Turny
+    </button>
+  </div>
   {#if bracket.length !== 0}
     <Bracket bind:bracket bind:remainingPlayers {setWinner} />
   {:else}
