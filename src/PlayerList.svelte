@@ -43,7 +43,7 @@
 </style>
 
 <div class="bg-white p-4 depth-shadow">
-  <h3 class="font-roboto-700 text-xl">Player List</h3>
+  <h3 class="font-roboto-700 text-xl">Add some players!</h3>
   <form on:submit={addPlayer} class="flex justify-center pb-2 w-full">
     <div class="flex flex-row depth-shadow">
       <input

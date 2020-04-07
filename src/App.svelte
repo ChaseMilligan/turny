@@ -4,15 +4,7 @@
   import BracketContainer from "./BracketContainer.svelte";
   import GithubCircle from "../node_modules/svelte-material-icons/GithubCircle.svelte";
 
-  let players = [
-    "Chase",
-    "Kevin",
-    "Ozzie",
-    "Chris",
-    "Daylon",
-    "Marco",
-    "Josie"
-  ];
+  let players = [];
   let winner = null;
 
   function setWinner(finalWinner) {
@@ -24,6 +16,7 @@
   main {
     text-align: center;
     margin: 0 auto;
+    min-height: 90vh;
   }
 
   h1 {
@@ -64,7 +57,7 @@
     </div>
   </div>
 </main>
-<div class="text-center my-4">
+<div class="text-center my-4 bottom-0 right-0 left-0">
   <a
     href="https://github.com/ChaseMilligan/turny"
     target="_blank"

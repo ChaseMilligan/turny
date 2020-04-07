@@ -49,7 +49,6 @@
 
 <style>
   button {
-    padding: 0.25rem 0.5rem;
     transition-duration: 0.15s;
   }
 </style>
@@ -59,9 +58,9 @@
     <div class="w-full p-1">
       <TypeContainer {setType} {bracketType} />
     </div>
-    <div class="flex flex-col w-full p-1 justify-center">
+    <div class="flex flex-col p-2 justify-center">
       <button
-        class={disabled ? 'w-full bg-gray-300 text-gray-500 border-solid border-gray-300 border cursor-not-allowed hover:border-gray-500' : 'w-full depth-shadow bg-blue-500 text-white hover:bg-green-400'}
+        class={disabled ? 'p-4 bg-gray-300 text-gray-500 border-solid border-gray-300 border cursor-not-allowed hover:border-gray-500' : 'p-4 depth-shadow bg-blue-500 text-white hover:bg-green-400'}
         {disabled}
         on:click={generateBracket}>
         Generate Turny
