@@ -6,6 +6,7 @@
   export let bracket;
   export let remainingPlayers;
   export let setWinner;
+  export let bracketType;
 
   let allGames = [];
   let final = null;
@@ -13,7 +14,9 @@
   let disabled = !!allGames.find(game => game.gameWinner === null);
 
   function populateBracket() {
+    console.log(allGames);
     let playerIndex = 0;
+    allGames = [];
     remainingPlayers = shuffle(remainingPlayers);
     for (let i = 0; i < Math.ceil(remainingPlayers.length / 2); i++) {
       if (i === 0 && !!bracket[currentRound - 1].byes) {
@@ -25,6 +28,7 @@
               bye: bracket[currentRound - 1].byes !== 0 ? true : false
             }
           ],
+          score: null,
           gameWinner: remainingPlayers[playerIndex]
         });
         playerIndex += 1;
@@ -38,6 +42,7 @@
                 bye: true
               }
             ],
+            score: null,
             gameWinner: remainingPlayers[playerIndex]
           });
         } else {
@@ -53,6 +58,7 @@
                 bye: false
               }
             ],
+            score: [0, 0],
             gameWinner: null
           });
         }
@@ -60,6 +66,11 @@
       }
     }
     allGames = allGames;
+  }
+
+  function completeGame(gameId) {
+    completeGames.push(gameId);
+    completeGames = completeGames;
   }
 
   function shuffle(array) {
@@ -93,8 +104,9 @@
     remainingPlayers = [];
     for (let i = 0; i < allGames.length; i++) {
       remainingPlayers.push(allGames[i].gameWinner);
+      allGames[i].gameWinner = "";
     }
-    allGames = [];
+    console.log(allGames);
     remainingPlayers = shuffle(remainingPlayers);
     if (currentRound > bracket.length) {
       setupFinal();
@@ -111,12 +123,53 @@
     final = final;
   }
 
+  function handlePlayerScoreChange(gameNumber, player, direction) {
+    const gameId = gameNumber - 1;
+    const playerId = player - 1;
+    const game = allGames[gameId];
+
+    if (player === 1 && game.gameWinner === game.players[1].name) {
+      return;
+    }
+    if (player === 2 && game.gameWinner === game.players[0].name) {
+      return;
+    }
+
+    if (direction === "up") {
+      if (
+        game.score[playerId] === Math.ceil(bracketType / 2) ||
+        game.gameWinner === game.players[playerId].name
+      ) {
+        return;
+      }
+      game.score[playerId] += 1;
+      allGames = allGames;
+      if (game.score[playerId] >= Math.ceil(bracketType / 2)) {
+        setGameWinner(game.game, game.players[playerId].name);
+        return;
+      }
+      return;
+    }
+    if (direction === "down") {
+      if (game.score[playerId] === 0) {
+        return;
+      }
+      game.score[playerId] -= 1;
+      allGames = allGames;
+      if (game.score[playerId] < Math.ceil(bracketType / 2)) {
+        setGameWinner(game.game, "");
+      }
+      return;
+    }
+  }
+
   onMount(() => {
     remainingPlayers = shuffle(remainingPlayers);
     populateBracket();
   });
 
   afterUpdate(() => {
+    console.log(allGames);
     disabled = !!allGames.find(game => game.gameWinner === null);
   });
 </script>
@@ -128,16 +181,23 @@
   }
 </style>
 
-<div class="my-2 py-2">
+<div class="w-full my-2 py-2">
   <h3 class="font-roboto-700 uppercase text-xl">
     {currentRound > bracket.length ? 'Final' : `Round ${currentRound}`}
   </h3>
   {#if !final}
-    <div class="flex flex-col lg:flex-row flex-wrap justify-center my-4">
-      {#each allGames as game, i}
-        <Game {game} {setGameWinner} />
-      {/each}
-    </div>
+    {#if allGames !== []}
+      <div class="flex flex-col lg:flex-row flex-wrap justify-center my-8">
+        {#each allGames as game, i}
+          <Game
+            bind:game
+            {setGameWinner}
+            bind:bracketType
+            score={game.score}
+            {handlePlayerScoreChange} />
+        {/each}
+      </div>
+    {/if}
   {:else}
     <Final {final} {setWinner} />
   {/if}
