@@ -21,6 +21,7 @@
 
   h1 {
     font-weight: 800;
+    line-height: 5rem;
   }
 
   .winner-mask {
@@ -48,6 +49,7 @@
     </div>
   {/if}
   <h1 class="font-700 font-comfortaa text-red-500 text-6xl">Turny</h1>
+  <h2 class="mb-4">A simple tournament bracket manager</h2>
   <div class="flex flex-col xl:flex-row mx-2 md:mx-6 lg:mx-12">
     <div class="mb-4 px-4 w-full xl:w-1/3">
       <PlayerList bind:players />
