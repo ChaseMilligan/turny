@@ -16,7 +16,7 @@
   main {
     text-align: center;
     margin: 0 auto;
-    min-height: 90vh;
+    min-height: 94vh;
   }
 
   h1 {
@@ -49,10 +49,10 @@
   {/if}
   <h1 class="font-700 font-comfortaa text-red-500 text-6xl">Turny</h1>
   <div class="flex flex-col xl:flex-row mx-2 md:mx-6 lg:mx-12">
-    <div class="mb-4 px-1 w-full xl:w-1/3">
+    <div class="mb-4 px-4 w-full xl:w-1/3">
       <PlayerList bind:players />
     </div>
-    <div class="px-1 w-full xl:w-2/3">
+    <div class="w-full xl:w-2/3">
       <BracketContainer bind:players {setWinner} />
     </div>
   </div>
