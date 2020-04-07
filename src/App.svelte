@@ -2,8 +2,17 @@
   import PlayerList from "./PlayerList.svelte";
   import Tailwindcss from "./Tailwindcss.svelte";
   import BracketContainer from "./BracketContainer.svelte";
+  import GithubCircle from "../node_modules/svelte-material-icons/GithubCircle.svelte";
 
-  let players = [];
+  let players = [
+    "Chase",
+    "Kevin",
+    "Ozzie",
+    "Chris",
+    "Daylon",
+    "Marco",
+    "Josie"
+  ];
   let winner = null;
 
   function setWinner(finalWinner) {
@@ -46,7 +55,7 @@
     </div>
   {/if}
   <h1 class="font-700 font-comfortaa text-red-500 text-6xl">Turny</h1>
-  <div class="flex flex-col-reverse xl:flex-row mx-2 md:mx-6 lg:mx-12">
+  <div class="flex flex-col xl:flex-row mx-2 md:mx-6 lg:mx-12">
     <div class="mb-4 px-1 w-full xl:w-1/3">
       <PlayerList bind:players />
     </div>
@@ -55,3 +64,12 @@
     </div>
   </div>
 </main>
+<div class="text-center my-4">
+  <a
+    href="https://github.com/ChaseMilligan/turny"
+    target="_blank"
+    class="flex flex-row items-center justify-center">
+    <GithubCircle color="black" class="inline-block" />
+    Turny on Github.
+  </a>
+</div>
