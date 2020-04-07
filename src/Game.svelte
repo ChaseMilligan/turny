@@ -13,7 +13,6 @@
   let height = "70px";
 
   afterUpdate(() => {
-    console.log(bracketType, Math.ceil(bracketType / 2));
     if (
       score !== null &&
       game.gameWinner &&

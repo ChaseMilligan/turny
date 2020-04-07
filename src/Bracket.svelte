@@ -14,7 +14,6 @@
   let disabled = !!allGames.find(game => game.gameWinner === null);
 
   function populateBracket() {
-    console.log(allGames);
     let playerIndex = 0;
     allGames = [];
     remainingPlayers = shuffle(remainingPlayers);
@@ -106,7 +105,6 @@
       remainingPlayers.push(allGames[i].gameWinner);
       allGames[i].gameWinner = "";
     }
-    console.log(allGames);
     remainingPlayers = shuffle(remainingPlayers);
     if (currentRound > bracket.length) {
       setupFinal();
@@ -169,7 +167,6 @@
   });
 
   afterUpdate(() => {
-    console.log(allGames);
     disabled = !!allGames.find(game => game.gameWinner === null);
   });
 </script>
