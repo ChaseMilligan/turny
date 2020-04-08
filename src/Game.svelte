@@ -13,26 +13,28 @@
   let height = "70px";
 
   afterUpdate(() => {
-    if (
-      score !== null &&
-      game.gameWinner &&
-      score[0] < Math.ceil(bracketType / 2) &&
-      score[1] < Math.ceil(bracketType / 2)
-    ) {
-      setGameWinner(game.game, "");
-    }
+    if (bracketType !== "1") {
+      if (
+        score !== null &&
+        game.gameWinner &&
+        score[0] < Math.ceil(bracketType / 2) &&
+        score[1] < Math.ceil(bracketType / 2)
+      ) {
+        setGameWinner(game.game, "");
+      }
 
-    if (score !== null && score[0] > Math.ceil(bracketType / 2)) {
-      handlePlayerScoreChange(game.game, 1, "down");
       if (score !== null && score[0] > Math.ceil(bracketType / 2)) {
         handlePlayerScoreChange(game.game, 1, "down");
+        if (score !== null && score[0] > Math.ceil(bracketType / 2)) {
+          handlePlayerScoreChange(game.game, 1, "down");
+        }
       }
-    }
 
-    if (score !== null && score[1] > Math.ceil(bracketType / 2)) {
-      handlePlayerScoreChange(game.game, 2, "down");
       if (score !== null && score[1] > Math.ceil(bracketType / 2)) {
         handlePlayerScoreChange(game.game, 2, "down");
+        if (score !== null && score[1] > Math.ceil(bracketType / 2)) {
+          handlePlayerScoreChange(game.game, 2, "down");
+        }
       }
     }
   });

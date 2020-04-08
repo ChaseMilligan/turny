@@ -13,6 +13,11 @@
   let currentRound = 1;
   let disabled = !!allGames.find(game => game.gameWinner === null);
 
+  function setTempFinalWinner(player) {
+    final.gameWinner = player.name;
+    final = final;
+  }
+
   function populateBracket() {
     let playerIndex = 0;
     allGames = [];
@@ -114,9 +119,15 @@
   }
 
   function setupFinal() {
+    console;
     final = {
-      players: remainingPlayers,
-      gameWinner: null
+      game: "final",
+      players: [
+        { name: remainingPlayers[0], bye: false },
+        { name: remainingPlayers[1], bye: false }
+      ],
+      score: [0, 0],
+      gameWinner: ""
     };
     final = final;
   }
@@ -124,7 +135,7 @@
   function handlePlayerScoreChange(gameNumber, player, direction) {
     const gameId = gameNumber - 1;
     const playerId = player - 1;
-    const game = allGames[gameId];
+    const game = !final ? allGames[gameId] : final;
 
     if (player === 1 && game.gameWinner === game.players[1].name) {
       return;
@@ -141,10 +152,14 @@
         return;
       }
       game.score[playerId] += 1;
+      final = final;
       allGames = allGames;
       if (game.score[playerId] >= Math.ceil(bracketType / 2)) {
-        setGameWinner(game.game, game.players[playerId].name);
-        return;
+        if (!final) {
+          setGameWinner(game.game, game.players[playerId].name);
+          return;
+        }
+        setTempFinalWinner(game.players[playerId]);
       }
       return;
     }
@@ -153,9 +168,14 @@
         return;
       }
       game.score[playerId] -= 1;
+      final = final;
       allGames = allGames;
       if (game.score[playerId] < Math.ceil(bracketType / 2)) {
-        setGameWinner(game.game, "");
+        if (!final) {
+          setGameWinner(game.game, "");
+          return;
+        }
+        setTempFinalWinner({ name: "" });
       }
       return;
     }
@@ -196,12 +216,25 @@
       </div>
     {/if}
   {:else}
-    <Final {final} {setWinner} />
+    <Final
+      bind:final
+      bind:bracketType
+      score={final.score}
+      {setTempFinalWinner}
+      {handlePlayerScoreChange} />
   {/if}
   <button
     class={disabled ? 'bg-gray-300 text-gray-700 border-solid border-gray-300 border cursor-not-allowed hover:border-gray-500' : 'depth-shadow bg-blue-500 text-white hover:bg-green-400'}
-    on:click={nextRound}
+    on:click={!final ? nextRound : () => setWinner(final.gameWinner)}
     {disabled}>
-    Next Round
+    {#if !final}
+      Next Round
+    {:else}
+      Declare
+      {#if final.gameWinner}
+        <span class="uppercase">{final.gameWinner}</span>
+      {/if}
+      the Turny champion
+    {/if}
   </button>
 </div>

@@ -9,6 +9,19 @@
   let width = "20px";
   let disabled = true;
 
+  const placeholders = [
+    "Bill",
+    "Kevin",
+    "Tiger",
+    "Arnold",
+    "Jude",
+    "David",
+    "Jay",
+    "Jack",
+    "Jesse",
+    "Woody"
+  ];
+
   function handleChange(event) {
     currentValue = event.target.value;
   }
@@ -40,11 +53,18 @@
   input {
     border: none;
   }
+
+  input::placeholder {
+    font-style: italic;
+  }
 </style>
 
 <div class="bg-white p-4 depth-shadow">
-  <h3 class="font-roboto-700 text-xl">Add some participants!</h3>
-  <form on:submit={addPlayer} class="flex justify-center pb-2 w-full">
+  <h3 class="font-roboto-700 text-xl leading-tight">Add some participants!</h3>
+  <i class="text-gray-400 text-xs mb-2">
+    Enter each name of the people or teams participating.
+  </i>
+  <form on:submit={addPlayer} class="flex justify-center py-2 w-full">
     <div class="flex flex-row depth-shadow">
       <input
         class="py-1 px-2 bg-gray-200"
@@ -53,13 +73,16 @@
         maxlength="14"
         on:change={event => handleChange(event)}
         value={currentValue}
-        placeholder="Enter player name" />
-      <button
-        class="bg-blue-500 hover:bg-green-400 text-white cursor-pointer
-        border-blue-500 hover:border-green-400 font-roboto-300"
-        type="submit">
-        Add
-      </button>
+        placeholder={`ex: ${placeholders[Math.floor(Math.random() * Math.floor(placeholders.length - 1))]}`} />
+      <span title="Add a participant">
+        <button
+          class="bg-blue-500 hover:bg-green-400 text-white cursor-pointer
+          border-blue-500 hover:border-green-400 font-roboto-300"
+          type="submit">
+          Add
+        </button>
+      </span>
+
     </div>
   </form>
   <div>

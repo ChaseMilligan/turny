@@ -9,7 +9,7 @@
   let bracket = [];
   let remainingPlayers = players;
   let disabled = players.length < 3 ? true : false;
-  let bracketType = "single";
+  let bracketType = "1";
 
   function clearBracket() {
     bracket = [];
@@ -58,14 +58,20 @@
     <div class="w-full p-1">
       <TypeContainer {setType} {bracketType} />
     </div>
-    <div class="flex flex-col p-2 justify-center">
-      <button
-        class={disabled ? 'p-4 bg-gray-300 text-gray-500 border-solid border-gray-300 border cursor-not-allowed hover:border-gray-500' : 'p-4 depth-shadow bg-blue-500 text-white hover:bg-green-400'}
-        {disabled}
-        on:click={generateBracket}>
-        Generate Turny
-      </button>
-    </div>
+    {#if bracket.length === 0}
+      <div class="flex flex-col p-2 justify-center">
+        <span
+          class=""
+          title={disabled ? 'You are not ready to generate a Turny yet.' : 'Generate a Turny'}>
+          <button
+            class={disabled ? 'p-4 bg-gray-300 text-gray-500 border-solid border-gray-300 border cursor-not-allowed hover:border-gray-500' : 'p-4 depth-shadow bg-blue-500 text-white hover:bg-green-400'}
+            {disabled}
+            on:click={generateBracket}>
+            Generate Turny
+          </button>
+        </span>
+      </div>
+    {/if}
   </div>
   {#if bracket.length !== 0}
     <Bracket bind:bracket bind:remainingPlayers {setWinner} bind:bracketType />
