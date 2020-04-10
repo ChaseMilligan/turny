@@ -9,6 +9,7 @@
   let height = "20px";
   let width = "20px";
   $: disabled = bracketInitialized || false;
+  let nameError = false;
 
   const placeholders = [
     "Bill",
@@ -24,6 +25,11 @@
   ];
 
   function handleChange(event) {
+    console.log(nameError);
+    if (nameError === true) {
+      nameError = false;
+      nameError = nameError;
+    }
     currentValue = event.target.value;
   }
 
@@ -39,8 +45,17 @@
 
   function addPlayer() {
     event.preventDefault();
-    if (!currentValue || currentValue === " ") {
+    if (
+      !currentValue ||
+      players.find(
+        player => player.toLowerCase() === currentValue.toLowerCase()
+      )
+    ) {
+      nameError = true;
       return;
+    }
+    if (nameError === true) {
+      nameError = false;
     }
     players.push(currentValue.replace(/[^a-z0-9]/gi, ""));
     players = players;
@@ -90,6 +105,11 @@
 
     </div>
   </form>
+  {#if nameError === true}
+    <p class="my-2 py-2 text-red-500 font-bold">
+      Name is invalid or already exists.
+    </p>
+  {/if}
   <div>
     {#each players as player, i}
       <div
