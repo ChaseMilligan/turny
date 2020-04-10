@@ -4,12 +4,19 @@
   import Tailwindcss from "./Tailwindcss.svelte";
   import BracketContainer from "./BracketContainer.svelte";
   import GithubCircle from "../node_modules/svelte-material-icons/GithubCircle.svelte";
+  import { afterUpdate } from "svelte";
 
   let players = [];
   let winner = null;
+  let bracketInitialized = false;
 
   function setWinner(finalWinner) {
     winner = finalWinner;
+  }
+
+  function initializeBracket() {
+    bracketInitialized = true;
+    bracketInitialized = bracketInitialized;
   }
 </script>
 
@@ -34,10 +41,14 @@
   <h2 class="mb-4">A simple tournament bracket manager</h2>
   <div class="flex flex-col xl:flex-row mx-2 md:mx-6 lg:mx-12">
     <div class="mb-4 px-4 w-full xl:w-1/3">
-      <PlayerList bind:players />
+      <PlayerList bind:players {bracketInitialized} />
     </div>
     <div class="w-full xl:w-2/3">
-      <BracketContainer bind:players {setWinner} />
+      <BracketContainer
+        bind:players
+        {setWinner}
+        {initializeBracket}
+        {bracketInitialized} />
     </div>
   </div>
 </main>

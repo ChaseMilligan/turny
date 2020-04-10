@@ -5,10 +5,16 @@
 
   export let players;
   export let setWinner;
+  export let initializeBracket;
+  export let bracketInitialized;
 
   let bracket = [];
   let remainingPlayers = players;
-  let disabled = players.length < 3 ? true : false;
+  let disabled = bracketInitialized
+    ? bracketInitialized
+    : players.length < 3
+    ? true
+    : false;
   let bracketType = "1";
 
   function clearBracket() {
@@ -17,6 +23,7 @@
   }
 
   function generateBracket() {
+    initializeBracket();
     let playerIndex = 0;
     let winnerCount = remainingPlayers.length;
     let length = Math.ceil(remainingPlayers.length / 2);

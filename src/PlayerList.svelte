@@ -2,12 +2,13 @@
   import CloseCircle from "../node_modules/svelte-material-icons/CloseCircle.svelte";
 
   export let players;
+  export let bracketInitialized;
 
   let currentValue = null;
   let invalidName = false;
   let height = "20px";
   let width = "20px";
-  let disabled = true;
+  $: disabled = bracketInitialized || false;
 
   const placeholders = [
     "Bill",
@@ -27,6 +28,9 @@
   }
 
   function removePlayer(id) {
+    if (disabled) {
+      return;
+    }
     if (id > -1) {
       players.splice(id, 1);
     }
@@ -35,10 +39,10 @@
 
   function addPlayer() {
     event.preventDefault();
-    if (!currentValue) {
+    if (!currentValue || currentValue === " ") {
       return;
     }
-    players.push(currentValue);
+    players.push(currentValue.replace(/[^a-z0-9]/gi, ""));
     players = players;
     currentValue = null;
   }
@@ -73,11 +77,12 @@
         maxlength="14"
         on:change={event => handleChange(event)}
         value={currentValue}
+        {disabled}
         placeholder={`ex: ${placeholders[Math.floor(Math.random() * Math.floor(placeholders.length - 1))]}`} />
       <span title="Add a participant">
         <button
-          class="bg-blue-500 hover:bg-green-400 text-white cursor-pointer
-          border-blue-500 hover:border-green-400 font-roboto-300"
+          disabeld={disabled}
+          class={disabled ? 'bg-gray-400 text-white cursor-pointer font-roboto-300' : 'bg-blue-500 hover:bg-green-400 text-white cursor-pointer border-blue-500 hover:border-green-400 font-roboto-300'}
           type="submit">
           Add
         </button>
@@ -98,7 +103,10 @@
         <span
           class="flex items-center cursor-pointer"
           on:click={() => removePlayer(i)}>
-          <CloseCircle color="#f56565" {width} {height} />
+          <CloseCircle
+            color={disabled ? '#cbd5e0' : '#f56565'}
+            {width}
+            {height} />
         </span>
       </div>
     {/each}
